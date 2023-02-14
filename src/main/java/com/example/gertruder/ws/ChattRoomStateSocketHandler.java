@@ -1,6 +1,5 @@
 package com.example.gertruder.ws;
 
-import com.example.gertruder.model.ChattRoom;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ChattRoomSocketHandler extends TextWebSocketHandler {
+public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
     private List<WebSocketSession> sessions = new ArrayList<>();
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {

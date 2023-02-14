@@ -20,8 +20,11 @@ public class ChattRoom {
     @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
     private long id;
     private String titel;
-    private String room;
+    private String attendeees;
+
+    private boolean isOnLine;
 
 
     }
+
 
