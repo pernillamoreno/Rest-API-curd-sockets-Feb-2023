@@ -1,8 +1,6 @@
 package com.example.gertruder.ws;
 
-import com.example.gertruder.service.ChattRoomService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.google.gson.Gson;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -12,24 +10,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
-    private final List<WebSocketSession> sessions = new ArrayList<>();
-    @Autowired
-    private ChattRoomService chattRoomService;
+public class MessRoomStateSocketHandler  extends TextWebSocketHandler {
+    private List<WebSocketSession> sessions = new ArrayList<>();
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         broadcast(message.getPayload());
     }
-   /* public void broadcast(ChattRoom chattRoom) {
-        broadcastJson(chattRoom.clone());
+
+   /* public void broadcast(Student oldState, Student newState) {
+        StudentStateDetails details = new StudentStateDetails(oldState, newState);
+        broadcastJson(details);
+    }
+
+    public void broadcast(Student student) {
+        broadcastJson(student.clone());
     }
 
     public void broadcastJson(Object object) {
         Gson gson = new Gson();
-        broadcast(gson.toJson(object));
-    }*/
+        broadcast(gson.toJson(object));*/
+
 
     public void broadcast(String message) {
         try {
@@ -54,3 +55,4 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
         System.out.println("Session was removed");
     }
 }
+
