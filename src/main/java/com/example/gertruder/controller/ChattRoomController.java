@@ -46,45 +46,9 @@ public class ChattRoomController { // CHANGES COMING UP SOOOON!!
         return ResponseEntity.ok(chattRoomService.get(chattRoomId));
     }
 
+    //MORE HERE!!
 
 
-   /* @PostMapping("student")
-    @PatchMapping("student")
-    @PutMapping("student")
-    public ResponseEntity<List<Student>> addStudent(@RequestBody Student student) {
-        studentService.save(student);
-        studentStateSocketHandler.broadcast(student.getName() + " was created");
-        return getAllStudents();
-    }
-
-    @DeleteMapping("student")
-    public ResponseEntity<List<Student>> deleteStudent(@RequestBody Student student) {
-        studentService.delete(student.getId());
-        return getAllStudents();
-    }
-
-    @DeleteMapping("student/{studentId}")
-    public ResponseEntity<List<Student>> deleteStudent(@PathVariable long studentId) {
-        studentService.delete(studentId);
-        return getAllStudents();
-    }
-
-    @PatchMapping("student/online/{state}/{studentId}")
-    public void setOnlineState(@PathVariable String state, @PathVariable long studentId) {
-        Student newStudent = studentService.get(studentId);
-        Student oldStudent = newStudent.clone();
-
-        switch(state) {
-            case "online": newStudent.setOnline(true); break;
-            case "offline": newStudent.setOnline(false); break;
-            default: throw new IllegalStateException(state + " was illdefined");
-        }
-
-
-        studentService.save(newStudent);
-
-        // broadcast student changes
-        studentStateSocketHandler.broadcast(oldStudent, newStudent);*/
     }
 
 
