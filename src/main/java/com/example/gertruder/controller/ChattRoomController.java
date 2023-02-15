@@ -31,16 +31,20 @@ public class ChattRoomController { // CHANGES COMING UP SOOOON!!
     @RequestMapping("/")
     public List<ChattRoom>ChattRooms() {
        List<ChattRoom> chattRooms = new ArrayList<>();
+        
+        
+        
 
-        chattRooms.add(new ChattRoom(1,"bääää","många",true));
-        chattRooms.add(new ChattRoom(2,"bä","bö",false));
-        return chattRooms;
+     //  MORE CODE HERE!!!
 
 
         //return ResponseEntity.ok(chattRoomService.getAll());
     }
 
 
+    
+    
+    
    @GetMapping
     public ResponseEntity<ChattRoom> getStudentById(@PathVariable long chattRoomId) {
         return ResponseEntity.ok(chattRoomService.get(chattRoomId));
