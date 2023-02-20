@@ -15,11 +15,13 @@ public class ChattRoomService {
     private JpaChattRoomRepository jpaChattRoomRepository;
 
     public List <ChattRoom> getChattRoom() {return jpaChattRoomRepository.findAll();}
-    public ChattRoom addChattRoom(ChattRoom chattRoom) {return jpaChattRoomRepository.save(chattRoom);
-    }
+    
+    public ChattRoom addChattRoom(ChattRoom chattRoom) {return jpaChattRoomRepository.save(chattRoom);}
+    
     public ChattRoom get(long id) {return jpaChattRoomRepository.getReferenceById(id);}
 
     public ChattRoom save(ChattRoom chattRoom) {return jpaChattRoomRepository.save(chattRoom);}
+    
     public void delete(long id){jpaChattRoomRepository.deleteById(id);}
 
 
