@@ -1,6 +1,8 @@
 package com.example.gertruder.ws;
 
+import com.example.gertruder.model.ChattRoom;
 import com.example.gertruder.service.ChattRoomService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -19,25 +21,27 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
     private ChattRoomService chattRoomService;
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        broadcast(message.getPayload());
-    }
-   /* public void broadcast(ChattRoom chattRoom) {
-        broadcastJson(chattRoom.clone());
+    protected void handleTextMessage(WebSocketSession session, TextMessage message)  {
+        broadcast(message.getPayload(),session);
     }
 
-    public void broadcastJson(Object object) {
-        Gson gson = new Gson();
-        broadcast(gson.toJson(object));
-    }*/
 
-    public void broadcast(String message) {
+    public void broadcast(String message,WebSocketSession webSocketSession) {
         try {
-            for (WebSocketSession webSession : sessions) { // broadcast
+            for (WebSocketSession webSession : sessions) {
                 webSession.sendMessage(new TextMessage(message));
             }
         } catch(IOException ex) {
             ex.printStackTrace();
+        }
+    }
+    public void broadcast(ChattRoom chatt){
+        try {
+            for (WebSocketSession webSession : sessions) {
+                webSession.sendMessage(new TextMessage("Chatt" + chatt.getTitel() + "id created " + chatt.getId()));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

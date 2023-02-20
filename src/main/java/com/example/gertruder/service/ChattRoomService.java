@@ -12,12 +12,15 @@ import java.util.List;
 public class ChattRoomService {
 
     @Autowired
-    private JpaChattRoomRepository chattRoomRepository;
+    private JpaChattRoomRepository jpaChattRoomRepository;
 
-    public List <ChattRoom> getAll() {return chattRoomRepository.findAll();}
+    public List <ChattRoom> getChattRoom() {return jpaChattRoomRepository.findAll();}
+    public ChattRoom addChattRoom(ChattRoom chattRoom) {return jpaChattRoomRepository.save(chattRoom);
+    }
+    public ChattRoom get(long id) {return jpaChattRoomRepository.getReferenceById(id);}
 
-    public ChattRoom get(long id) {return chattRoomRepository.getReferenceById(id);}
+    public ChattRoom save(ChattRoom chattRoom) {return jpaChattRoomRepository.save(chattRoom);}
+    public void delete(long id){jpaChattRoomRepository.deleteById(id);}
 
-    public ChattRoom save(ChattRoom chattRoom) {return chattRoomRepository.save(chattRoom);}
-    public void delete(long chattRoomId){chattRoomRepository.deleteById(chattRoomId);}
+
 }

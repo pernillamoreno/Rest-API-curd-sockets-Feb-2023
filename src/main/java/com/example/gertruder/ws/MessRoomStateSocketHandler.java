@@ -1,6 +1,7 @@
 package com.example.gertruder.ws;
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -9,7 +10,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class MessRoomStateSocketHandler  extends TextWebSocketHandler {
     private List<WebSocketSession> sessions = new ArrayList<>();
 
@@ -18,18 +19,7 @@ public class MessRoomStateSocketHandler  extends TextWebSocketHandler {
         broadcast(message.getPayload());
     }
 
-   /* public void broadcast(Student oldState, Student newState) {
-        StudentStateDetails details = new StudentStateDetails(oldState, newState);
-        broadcastJson(details);
-    }
 
-    public void broadcast(Student student) {
-        broadcastJson(student.clone());
-    }
-
-    public void broadcastJson(Object object) {
-        Gson gson = new Gson();
-        broadcast(gson.toJson(object));*/
 
 
     public void broadcast(String message) {

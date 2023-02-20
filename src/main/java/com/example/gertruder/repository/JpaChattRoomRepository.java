@@ -5,7 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository//("chattRoomRepository")
 public interface JpaChattRoomRepository extends JpaRepository<ChattRoom, Long> {
+
 
 }
