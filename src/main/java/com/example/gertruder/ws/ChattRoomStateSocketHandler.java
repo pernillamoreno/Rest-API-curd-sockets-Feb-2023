@@ -19,7 +19,7 @@ import java.util.List;
 public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
 
     @Autowired
-    private final ChattRoomService chattRoomService;
+    private ChattRoomService chattRoomService;
     private final List<WebSocketSession> sessions = new ArrayList<>();
 
 
