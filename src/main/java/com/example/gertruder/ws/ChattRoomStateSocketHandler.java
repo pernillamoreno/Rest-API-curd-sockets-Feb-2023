@@ -2,7 +2,7 @@ package com.example.gertruder.ws;
 
 import com.example.gertruder.model.ChattRoom;
 import com.example.gertruder.service.ChattRoomService;
-import com.google.gson.Gson;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -15,10 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
-    private final List<WebSocketSession> sessions = new ArrayList<>();
+
     @Autowired
-    private ChattRoomService chattRoomService;
+    private final ChattRoomService chattRoomService;
+    private final List<WebSocketSession> sessions = new ArrayList<>();
+
+
+
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message)  {
@@ -38,7 +43,7 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
     public void broadcast(ChattRoom chatt){
         try {
             for (WebSocketSession webSession : sessions) {
-                webSession.sendMessage(new TextMessage("Chatt" + chatt.getTitel() + "id created " + chatt.getId()));
+                webSession.sendMessage(new TextMessage("Chatt " + chatt.getTitel() + "and id created:" + chatt.getId()));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -49,12 +54,30 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
-        System.out.println("New session created");
+        System.out.println("New chattroom session created");
+
+
+        List<ChattRoom> chattRooms = chattRoomService.getChattRoom();
+        if(chattRooms != null || chattRooms.size() != 0 ){
+
+            try {
+                session.sendMessage(new TextMessage("Heeeelllooooo chattroom "));
+
+                for (ChattRoom chattRoom  : chattRooms) {
+                    session.sendMessage(new TextMessage(chattRoom.toString()));
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+
+            }
+        }
     }
+
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         sessions.remove(session);
-        System.out.println("Session was removed");
+        System.out.println("Hasta la vista! ");
     }
 }
