@@ -3,6 +3,7 @@ package com.example.gertruder.controller;
 import com.example.gertruder.model.ChattRoom;
 import com.example.gertruder.service.ChattRoomService;
 import com.example.gertruder.ws.ChattRoomStateSocketHandler;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
-public class ChattRoomController { // CHANGES COMING UP SOOOON!!
+@Data
+
+@RequestMapping("/chattRoom/")
+public class ChattRoomController {
     @Autowired
     private ChattRoomStateSocketHandler chattRoomStateSocketHandler;
     @Autowired
@@ -38,9 +41,7 @@ public class ChattRoomController { // CHANGES COMING UP SOOOON!!
 
 
     @PostMapping
-    public ResponseEntity<ChattRoom> createChattRoom(@RequestBody ChattRoom chattRoom) {      
-        
-
+    public ResponseEntity<ChattRoom> createChattRoom(@RequestBody ChattRoom chattRoom) {
         ChattRoom createChattRoom = chattRoomService.save(chattRoom);
         chattRoomStateSocketHandler.broadcast(createChattRoom);
         return ResponseEntity.status(204).body(createChattRoom);
