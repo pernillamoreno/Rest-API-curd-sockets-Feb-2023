@@ -61,7 +61,7 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
         if(chattRooms != null || chattRooms.size() != 0 ){
 
             try {
-                session.sendMessage(new TextMessage("Heeeelllooooo chattroom "));
+                session.sendMessage(new TextMessage("Alive and kicking state chattrooms "));
 
                 for (ChattRoom chattRoom  : chattRooms) {
                     session.sendMessage(new TextMessage(chattRoom.toString()));
