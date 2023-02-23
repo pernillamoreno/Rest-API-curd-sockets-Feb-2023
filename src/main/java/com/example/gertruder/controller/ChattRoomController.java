@@ -26,19 +26,15 @@ public class ChattRoomController {
     public ResponseEntity<List<ChattRoom>> getChattRoom() {
         return ResponseEntity.ok(chattRoomService.getChattRoom());
     }
-
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<List<ChattRoom>> deleteChattRoom(@PathVariable long id){
-        chattRoomService.delete(id);
-        return getChattRoom();
-    }
+   
     @RequestMapping(method = RequestMethod.POST, value = "/chattRoom")
     private void addChattRoom(@RequestBody ChattRoom chattRoom) {
         chattRoomService.addChattRoom(chattRoom);
     }
-
-
+    @RequestMapping(method = RequestMethod.PUT, value = "/chattRooms/{id}")
+    private void updateChattRoom(@RequestBody ChattRoom chattRoom, @PathVariable long id) {
+        chattRoomService.updatechattRoom(id, chattRoom);
+    }
 
     @PostMapping
     public ResponseEntity<ChattRoom> createChattRoom(@RequestBody ChattRoom chattRoom) {
@@ -46,6 +42,11 @@ public class ChattRoomController {
         chattRoomStateSocketHandler.broadcast(createChattRoom);
         return ResponseEntity.status(204).body(createChattRoom);
     }
+     @DeleteMapping("/{id}")
+    public ResponseEntity<List<ChattRoom>> deleteChattRoom(@PathVariable long id){
+        chattRoomService.delete(id);
+        return getChattRoom();
+    }
+    
 
-}
 
