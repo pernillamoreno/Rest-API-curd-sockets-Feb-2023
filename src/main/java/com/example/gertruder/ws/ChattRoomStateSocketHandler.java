@@ -57,7 +57,8 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
         System.out.println("New chattroom session created");
 
 
-        List<ChattRoom> chattRooms = chattRoomService.getChattRoom();
+      List<ChattRoom> chattRooms;
+        chattRooms = chattRoomService.getChattRoom();
         if(chattRooms != null || chattRooms.size() != 0 ){
 
             try {
