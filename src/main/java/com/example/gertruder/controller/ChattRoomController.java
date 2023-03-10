@@ -13,9 +13,9 @@ import java.util.List;
 
 @RestController
 @Data
-
 @RequestMapping("/chattRoom/")
 public class ChattRoomController {
+    
     @Autowired
     private ChattRoomStateSocketHandler chattRoomStateSocketHandler;
     @Autowired
