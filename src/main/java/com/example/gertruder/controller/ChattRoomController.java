@@ -40,7 +40,7 @@ public class ChattRoomController {
     public ResponseEntity<ChattRoom> createChattRoom(@RequestBody ChattRoom chattRoom) {
         ChattRoom createChattRoom = chattRoomService.save(chattRoom);
         chattRoomStateSocketHandler.broadcast(createChattRoom);
-        return ResponseEntity.status(204).body(createChattRoom);
+        return ResponseEntity.status(201).body(createChattRoom);
     }
      @DeleteMapping("/{id}")
     public ResponseEntity<List<ChattRoom>> deleteChattRoom(@PathVariable long id){
