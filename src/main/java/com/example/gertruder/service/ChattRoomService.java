@@ -28,4 +28,4 @@ public class ChattRoomService {
     public void updatechattRoom(long id, ChattRoom chattRoom) {
         jpaChattRoomRepository.save(chattRoom);
     }
-}}
+}
