@@ -27,10 +27,6 @@ public class ChattRoomController {
         return ResponseEntity.ok(chattRoomService.getChattRoom());
     }
    
-    @RequestMapping(method = RequestMethod.POST, value = "/chattRoom")
-    private void addChattRoom(@RequestBody ChattRoom chattRoom) {
-        chattRoomService.addChattRoom(chattRoom);
-    }
     @RequestMapping(method = RequestMethod.PUT, value = "/chattRooms/{id}")
     private void updateChattRoom(@RequestBody ChattRoom chattRoom, @PathVariable long id) {
         chattRoomService.updatechattRoom(id, chattRoom);
