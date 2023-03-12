@@ -48,5 +48,5 @@ public class ChattRoomController {
         return getChattRoom();
     }
     
-
+}
 
