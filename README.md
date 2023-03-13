@@ -1,4 +1,3 @@
-# MORE IS COMING UP!
 
 # Gertruder
 
