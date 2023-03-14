@@ -23,13 +23,10 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
     private final List<WebSocketSession> sessions = new ArrayList<>();
 
 
-
-
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message)  {
         broadcast(message.getPayload(),session);
     }
-
 
     public void broadcast(String message,WebSocketSession webSocketSession) {
         try {
@@ -50,12 +47,10 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
         }
     }
 
-
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
         System.out.println("New chattroom session created");
-
 
       List<ChattRoom> chattRooms;
         chattRooms = chattRoomService.getChattRoom();
@@ -74,7 +69,6 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
             }
         }
     }
-
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
