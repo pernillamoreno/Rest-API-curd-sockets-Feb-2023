@@ -10,6 +10,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class MessRoomStateSocketHandler  extends TextWebSocketHandler {
     private List<WebSocketSession> sessions = new ArrayList<>();
