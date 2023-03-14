@@ -20,8 +20,6 @@ public class MessRoomStateSocketHandler  extends TextWebSocketHandler {
     }
 
 
-
-
     public void broadcast(String message) {
         try {
             for (WebSocketSession webSession : sessions) { // broadcast
@@ -31,7 +29,6 @@ public class MessRoomStateSocketHandler  extends TextWebSocketHandler {
             ex.printStackTrace();
         }
     }
-
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
