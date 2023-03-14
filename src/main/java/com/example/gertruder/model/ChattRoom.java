@@ -19,11 +19,7 @@ public class ChattRoom {
 
     private long id;
     private String titel;
-    private String attendeees;
-
-    private boolean isOnLine;
-
-
+  
 }
 
 
