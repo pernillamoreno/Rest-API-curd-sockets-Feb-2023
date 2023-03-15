@@ -28,10 +28,10 @@ public class ChattRoomController {
         return ResponseEntity.ok(chattRoomService.getChattRooms());
     }
    
-    @RequestMapping(method = RequestMethod.PUT, value = "/chattRooms/{id}")
+   /* @RequestMapping(method = RequestMethod.PUT, value = "/chattRooms/{id}")
     private void updateChattRoom(@RequestBody ChattRoom chattRoom, @PathVariable long id) {
         chattRoomService.updatechattRoom(id, chattRoom);
-    }
+    }*/
 
     @PostMapping
     public ResponseEntity<ChattRoom> createChattRoom(@RequestBody ChattRoom chattRoom){
