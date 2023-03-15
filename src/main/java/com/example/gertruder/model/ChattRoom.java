@@ -7,19 +7,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
 @Entity
 @Data
 public class ChattRoom {
-    @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
 
-    @Id //primary key
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private long id;
-    private String titel;
-  
+    private String title;
 }
+
 
 
