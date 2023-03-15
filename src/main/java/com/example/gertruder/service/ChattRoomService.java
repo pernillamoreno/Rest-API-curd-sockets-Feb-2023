@@ -11,14 +11,12 @@ import java.util.List;
 @Service
 public class ChattRoomService {
 
-    @Autowired
-    private JpaChattRoomRepository jpaChattRoomRepository;
-
-    public List <ChattRoom> getChattRoom() {return jpaChattRoomRepository.findAll();}
+    public List <ChattRoom> getChattRooms() {return jpaChattRoomRepository.findAll();}
 
     public ChattRoom save(ChattRoom chattRoom) {return jpaChattRoomRepository.save(chattRoom);}
     
     public void delete(long id){jpaChattRoomRepository.deleteById(id);}
-    
-    public void updatechattRoom(long id, ChattRoom chattRoom) jpaChattRoomRepository.save(chattRoom);}
+    public void updatechattRoom(long id, ChattRoom chattRoom) {
+        jpaChattRoomRepository.save(chattRoom);
+    }
 }
