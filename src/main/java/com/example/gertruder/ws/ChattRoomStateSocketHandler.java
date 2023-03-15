@@ -14,47 +14,54 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+Component
 @RequiredArgsConstructor
 public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
 
     @Autowired
     private ChattRoomService chattRoomService;
-    private final List<WebSocketSession> sessions = new ArrayList<>();
+    private List<WebSocketSession> sessions = new ArrayList<>();
 
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message)  {
-        broadcast(message.getPayload(),session);
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) {
+        broadcast(message.getPayload(), session);
     }
 
-    public void broadcast(String message,WebSocketSession webSocketSession) {
+    public void broadcast(String message, WebSocketSession webSocketSession){
         try {
             for (WebSocketSession webSession : sessions) {
-                webSession.sendMessage(new TextMessage(message));
+
+                if(!webSocketSession.equals(webSession)) {
+                    webSession.sendMessage(new TextMessage(message));
+                }
             }
-        } catch(IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    public void broadcast(ChattRoom chatt){
-        try {
-            for (WebSocketSession webSession : sessions) {
-                webSession.sendMessage(new TextMessage("Chatt " + chatt.getTitel() + "and id created:" + chatt.getId()));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
+    public void broadcast(ChattRoom chattRoom){
+        try {
+            for (WebSocketSession webSession : sessions){
+
+                {
+                    webSession.sendMessage(new TextMessage("ChattRoom" + chattRoom.getTitle() + " with id:  " + chattRoom.getId()));
+                }
+            }
+        } catch(IOException ex){
+            ex.printStackTrace();
+        }
+
+    }
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    public void afterConnectionEstablished(WebSocketSession session) {
+
         sessions.add(session);
         System.out.println("New chattroom session created");
 
-      List<ChattRoom> chattRooms;
-        chattRooms = chattRoomService.getChattRoom();
-        if(chattRooms != null || chattRooms.size() != 0 ){
+        List<ChattRoom> chattRooms = chattRoomService.getChattRooms();
+        if(chattRooms != null && chattRooms.size() != 0 ){
 
             try {
                 session.sendMessage(new TextMessage("Alive and kicking state chattrooms "));
@@ -71,8 +78,10 @@ public class ChattRoomStateSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status){
         sessions.remove(session);
-        System.out.println("Hasta la vista! ");
+        System.out.println("Hasta la vista!");
+
     }
+
 }
