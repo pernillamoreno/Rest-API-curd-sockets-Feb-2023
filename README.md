@@ -1,7 +1,5 @@
 
-# Gertruder
-
-Rest CRUD & Sockets 
+# Rest CRUD & Sockets 
 
 
 
